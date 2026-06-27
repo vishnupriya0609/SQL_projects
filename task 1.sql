@@ -41,3 +41,4 @@ WHERE EMP_ID = 106;                -- UPDATE
 
 DELETE FROM COMPANY
 WHERE EMP_ID=108;                  -- DELETE 
+
