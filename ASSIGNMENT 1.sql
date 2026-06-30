@@ -1,0 +1,90 @@
+-- Create Database
+CREATE DATABASE EMPLOYEE_DB;
+USE EMPLOYEE_DB;
+
+-- Create Table
+CREATE TABLE EMPLOYEES(
+    EMP_ID INT,
+    EMP_NAME VARCHAR(50),
+    GENDER VARCHAR(10),
+    DEPARTMENT VARCHAR(50),
+    SALARY DECIMAL(10,2),
+    HIRE_DATE DATE,
+    CITY VARCHAR(50)
+);
+
+-- Insert Records
+INSERT INTO EMPLOYEES
+(EMP_ID, EMP_NAME, GENDER, DEPARTMENT, SALARY, HIRE_DATE, CITY)
+VALUES
+(101,'JOHN','MALE','IT',65000,'2021-01-15','CHENNAI'),
+(102,'SARAH','FEMALE','HR',45000,'2020-03-10','BANGALORE'),
+(103,'DAVID','MALE','FINANCE',70000,'2019-07-20','MUMBAI'),
+(104,'PRIYA','FEMALE','IT',80000,'2021-09-25','CHENNAI'),
+(105,'AHMED','MALE','SALES',55000,'2021-02-05','HYDERABAD'),
+(106,'MEENA','FEMALE','HR',50000,'2022-01-25','DELHI'),
+(107,'RAJ','MALE','IT',90000,'2021-10-16','BANGALORE'),
+(108,'ANITHA','FEMALE','FINANCE',75000,'2021-08-30','MUMBAI'),
+(109,'KUMAR','MALE','SALES',60000,'2022-04-15','CHENNAI'),
+(110,'FATIMA','FEMALE','IT',85000,'2019-06-22','HYDERABAD');
+
+-- 1. Display all employees
+SELECT * FROM EMPLOYEES;
+
+-- 2. Display employee names and salaries
+SELECT EMP_NAME, SALARY FROM EMPLOYEES;
+
+-- 3. Display employees working in the IT department
+SELECT * FROM EMPLOYEES
+WHERE DEPARTMENT = 'IT';
+
+-- 4. Display employees with salary greater than 60,000
+SELECT * FROM EMPLOYEES
+WHERE SALARY > 60000;
+
+-- 5. Display employees from Chennai
+SELECT * FROM EMPLOYEES
+WHERE CITY = 'CHENNAI';
+
+-- 6. Find employees hired after 2021
+SELECT * FROM EMPLOYEES
+WHERE HIRE_DATE > '2021-12-31';
+
+-- 7. Display employees sorted by salary (Ascending)
+SELECT * FROM EMPLOYEES
+ORDER BY SALARY ASC;
+
+-- 8. Find the highest-paid employee
+SELECT * FROM EMPLOYEES
+ORDER BY SALARY DESC
+LIMIT 1;
+
+-- 9. Find the average salary
+SELECT AVG(SALARY)  FROM EMPLOYEES;
+
+-- 10. Count employees in each department
+SELECT DEPARTMENT, COUNT(*) 
+FROM EMPLOYEES
+GROUP BY DEPARTMENT;
+
+-- 11. Display departments having more than 2 employees
+SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEES
+GROUP BY DEPARTMENT
+HAVING COUNT(*) > 2;
+
+-- 12. Display unique cities
+SELECT DISTINCT CITY FROM EMPLOYEES;
+
+-- 13. Display employees whose names start with 'A'
+SELECT *
+FROM EMPLOYEES
+WHERE EMP_NAME LIKE 'A%';
+
+-- 14. Display employees whose salary is between 50,000 and 80,000
+SELECT * FROM EMPLOYEES
+WHERE SALARY BETWEEN 50000 AND 80000;
+
+-- 15. Display the top 3 highest-paid employees
+SELECT * FROM EMPLOYEES
+ORDER BY SALARY DESC
+LIMIT 3;
