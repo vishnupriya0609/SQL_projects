@@ -1,4 +1,4 @@
-CREATE DATABASE BANK;                          -- create database
+CREATE DATABASE BANK;                                               -- create database
 USE  BANK;                                                          -- use database
 
 CREATE TABLE BANK_ACC(
