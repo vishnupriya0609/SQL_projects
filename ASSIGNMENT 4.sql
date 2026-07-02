@@ -1,0 +1,117 @@
+CREATE DATABASE COMPANY_DB;
+USE COMPANY_DB;
+
+CREATE TABLE DEPARTMENT(
+	DEPT_ID INT PRIMARY KEY,
+    DEPT_NAME VARCHAR(50)NOT NULL,
+    LOCATION VARCHAR(30)
+    );
+    
+    CREATE TABLE COM_EMPLOYEE(
+		EMPLOYEE_ID INT PRIMARY KEY,
+        EMPLOYEE_NAME VARCHAR(50) NOT NULL,
+        EMAIL  VARCHAR(100)UNIQUE NOT NULL,
+        PAN_NUMBER VARCHAR(50) UNIQUE NOT NULL,
+        GENDER VARCHAR(10) CHECK(gender in ('male','female','other')),
+        SALARY DECIMAL(10,2) CHECK (SALARY > 0),
+        CITY VARCHAR(50)DEFAULT'CHENNAI',
+        JOINING_DATE DATE DEFAULT(CURRENT_DATE),
+        DEPARTMENT_ID INT NOT NULL
+        );
+        
+        CREATE TABLE PROJECT(
+			PROJECT_ID INT PRIMARY KEY,
+            PROJECT_NAME VARCHAR(50) NOT NULL,
+            BUDGET DECIMAL(10,2)CHECK(BUDGET>0)
+            );
+            
+            
+	CREATE TABLE EMPLOYEE_PROJECT(
+	EMPLOYEE_ID INT, 
+	PROJECT_ID INT,
+	ASSIGNED_DATE DATE DEFAULT(CURRENT_DATE),
+	PRIMARY KEY(EMPLOYEE_ID,PROJECT_ID),
+	FOREIGN KEY (EMPLOYEE_ID) REFERENCES COM_EMPLOYEE(EMPLOYEE_ID),
+    FOREIGN KEY(PROJECT_ID) REFERENCES PROJECT(PROJECT_ID)
+		);
+            
+INSERT INTO DEPARTMENT VALUES
+(101,'HR','CHENNAI'),
+(102,'IT','BANGALORE'),
+(103,'FINANCE','HYDERABAD'),
+(104,'MARKETING','MUMBAI'),
+(105,'SALES','DELHI');
+
+SELECT * FROM DEPARTMENT;
+
+INSERT INTO COM_EMPLOYEE VALUES
+(1,'Arun','arun@gmail.com','PAN001','male',35000,'CHENNAI','2025-01-10',101),
+(2,'Priya','priya@gmail.com','PAN002','female',40000,'COIMBATORE','2025-01-12',102),
+(3,'Rahul','rahul@gmail.com','PAN003','male',45000,'MADURAI','2025-01-15',103),
+(4,'Divya','divya@gmail.com','PAN004','female',42000,'SALEM','2025-01-18',104),
+(5,'Karthik','karthik@gmail.com','PAN005','male',50000,'TRICHY','2025-01-20',105),
+(6,'Meena','meena@gmail.com','PAN006','female',37000,'ERODE','2025-01-22',101),
+(7,'Vijay','vijay@gmail.com','PAN007','male',55000,'CHENNAI','2025-01-25',102),
+(8,'Anitha','anitha@gmail.com','PAN008','female',39000,'MADURAI','2025-01-28',103),
+(9,'Suresh','suresh@gmail.com','PAN009','male',47000,'SALEM','2025-02-01',104),
+(10,'Nisha','nisha@gmail.com','PAN010','female',41000,'TRICHY','2025-02-04',105),
+(11,'Ajay','ajay@gmail.com','PAN011','male',43000,'CHENNAI','2025-02-07',101),
+(12,'Keerthi','keerthi@gmail.com','PAN012','female',46000,'COIMBATORE','2025-02-10',102),
+(13,'Manoj','manoj@gmail.com','PAN013','male',49000,'MADURAI','2025-02-13',103),
+(14,'Latha','latha@gmail.com','PAN014','female',38000,'SALEM','2025-02-16',104),
+(15,'Ravi','ravi@gmail.com','PAN015','male',60000,'TRICHY','2025-02-19',105),
+(16,'Pooja','pooja@gmail.com','PAN016','female',44000,'ERODE','2025-02-22',101),
+(17,'Hari','hari@gmail.com','PAN017','male',58000,'CHENNAI','2025-02-25',102),
+(18,'Sneha','sneha@gmail.com','PAN018','female',45000,'MADURAI','2025-02-28',103),
+(19,'Kiran','kiran@gmail.com','PAN019','male',51000,'SALEM','2025-03-02',104),
+(20,'Asha','asha@gmail.com','PAN020','female',42000,'TRICHY','2025-03-05',105);
+
+SELECT * FROM COM_EMPLOYEE;
+
+INSERT INTO PROJECT VALUES
+(201,'Payroll System',500000),
+(202,'E-Commerce Website',800000),
+(203,'Mobile App',450000),
+(204,'ERP System',900000),
+(205,'AI Chatbot',650000);
+
+SELECT * FROM PROJECT;
+
+INSERT INTO EMPLOYEE_PROJECT VALUES
+(1,201,'2025-03-10'),
+(2,202,'2025-03-11'),
+(3,203,'2025-03-12'),
+(4,204,'2025-03-13'),
+(5,205,'2025-03-14'),
+(6,201,'2025-03-15'),
+(7,202,'2025-03-16'),
+(8,203,'2025-03-17'),
+(9,204,'2025-03-18'),
+(10,205,'2025-03-19'),
+(11,201,'2025-03-20'),
+(12,202,'2025-03-21'),
+(13,203,'2025-03-22'),
+(14,204,'2025-03-23'),
+(15,205,'2025-03-24'),
+(16,201,'2025-03-25'),
+(17,202,'2025-03-26'),
+(18,203,'2025-03-27'),
+(19,204,'2025-03-28'),
+(20,205,'2025-03-29');
+
+SELECT * FROM EMPLOYEE_PROJECT;
+
+INSERT INTO COM_EMPLOYEE VALUES
+(1,'Test','test1@gmail.com','PAN021','male',30000,'CHENNAI','2025-07-01',101);
+INSERT INTO COM_EMPLOYEE VALUES
+(21,'Test','arun@gmail.com','PAN022','male',30000,'CHENNAI','2025-07-01',101);
+INSERT INTO COM_EMPLOYEE VALUES
+(21,NULL,'test21@gmail.com','PAN021','male',30000,'CHENNAI','2025-07-01',101);
+INSERT INTO COM_EMPLOYEE VALUES
+(21,'Test','test21@gmail.com','PAN021','male',30000,'CHENNAI','2025-07-01',999);
+INSERT INTO COM_EMPLOYEE VALUES
+(21,'Test','test21@gmail.com','PAN021','abc',30000,'CHENNAI','2025-07-01',101);
+
+
+
+
