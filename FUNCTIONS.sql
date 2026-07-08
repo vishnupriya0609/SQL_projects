@@ -1,0 +1,53 @@
+CREATE DATABASE FUNCTIONS;
+USE FUNCTIONS;
+
+CREATE TABLE EMP_FUNCTION(
+	EMPID INT,
+    EMPNAME VARCHAR(50),
+    DEPARTMENT VARCHAR(20)
+    );
+    ALTER TABLE EMP_FUNCTION
+    ADD COLUMN MARK DECIMAL(5,2);
+    
+    SELECT * FROM EMP_FUNCTION;
+    INSERT INTO EMP_FUNCTION VALUES
+    (1,'VISHNU','CSE',90),
+    (2,'priya','IT',80),
+    (3,'SANDHIYA','ECE',70),
+    (4,'NITHIYA','EEE',60),
+    (5,'PAVI','CSE',50);
+    
+    SELECT UPPER('PRIYA');
+    SELECT LOWER('VISHNU');
+    SELECT CONCAT(EMPNAME,'-',DEPARTMENT) FROM EMP_FUNCTION;              -- string functions
+    SELECT LENGTH('VISHNU');
+    SELECT SUBSTRING('VISHNU',1,4);
+    SELECT TRIM('   VISHNU   ');
+    SELECT LEFT('VISHNU',4);
+    SELECT RIGHT('PRIYA',4);
+    
+    SELECT ROUND(75.456,2);
+    SELECT CEIL(75.2);
+    SELECT FLOOR(75.6);
+    SELECT ABS(-75);                                           -- numeric & math functions
+    SELECT POWER(2,4);
+    SELECT MOD(10,3);
+    SELECT SQRT(64);
+    
+    SELECT NOW();
+    SELECT CURDATE();                                           -- date & time functions
+    SELECT DATE(NOW());
+    
+    SELECT COUNT(*) FROM EMP_FUNCTION;
+    SELECT SUM(MARK) FROM EMP_FUNCTION;
+    SELECT AVG(MARK) FROM EMP_FUNCTION;
+    SELECT MAX(MARK) FROM EMP_FUNCTION;                         -- aggregate functions
+    SELECT MIN(MARK) FROM EMP_FUNCTION;
+    SELECT EMPID,GROUP_CONCAT(EMPNAME) FROM EMP_FUNCTION GROUP BY EMPID;
+    
+    SELECT IF(MARK>=75,'PASS','FAIL') FROM EMP_FUNCTION;
+    SELECT IFNULL(DEPARTMENT,'UNKNOWN') FROM EMP_FUNCTION;
+    SELECT CASE WHEN MARK>=90 THEN'GOOD'                                      -- control flow functions
+    WHEN MARK>=75 THEN 'AVERAGE' ELSE 'BAD' END FROM EMP_FUNCTION;
+    
+    
